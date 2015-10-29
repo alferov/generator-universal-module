@@ -2,6 +2,7 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var _s = require('underscore.string');
 
 module.exports = yeoman.generators.Base.extend({
   prompting: function () {
@@ -13,15 +14,26 @@ module.exports = yeoman.generators.Base.extend({
     ));
 
     var prompts = [{
-      type: 'confirm',
-      name: 'someOption',
-      message: 'Would you like to enable this option?',
-      default: true
+      name: 'moduleName',
+      message: 'What\'s the name of your module?',
+      default: this.appname.replace(/\s/g, '-')
+    }, {
+      name: 'username',
+      message: 'What is your GitHub username?',
+      store: true,
+      validate: function (val) {
+      	return val.length > 0 ? true : 'You have to provide a username';
+      }
     }];
 
     this.prompt(prompts, function (props) {
-      this.props = props;
-      // To access props later use this.props.someOption;
+      this.props = {
+        moduleName: _s.slugify(props.moduleName),
+        camelizedModuleName: _s.camelize(props.moduleName),
+        name: this.user.git.name(),
+        email: this.user.git.email(),
+        username: props.username
+      };
 
       done();
     }.bind(this));
@@ -32,11 +44,12 @@ module.exports = yeoman.generators.Base.extend({
       this.fs.move(this.destinationPath(from), this.destinationPath(to));
     }.bind(this);
 
-    this.fs.copyTpl(this.templatePath() + '/**', this.destinationPath(), {});
+    var props = this.props;
+
+    this.fs.copyTpl(this.templatePath() + '/**', this.destinationPath(), props);
 
     mv('_package.json', 'package.json');
     mv('editorconfig', '.editorconfig');
-    mv('jshintrc', '.jshintrc');
   },
 
   install: function () {

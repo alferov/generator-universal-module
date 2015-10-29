@@ -10,15 +10,30 @@ describe('ujsm:app', function () {
   before(function (done) {
     helpers.run(path.join(__dirname, '../app'))
       .withOptions({ skipInstall: true })
-      .withPrompts({ someOption: true })
+      .withPrompts({
+        moduleName: "my module",
+        username: "beep"
+      })
       .on('end', done);
   });
 
   it('creates files', function () {
     assert.file([
       'package.json',
-      '.editorconfig',
-      '.jshintrc'
+      'readme.md',
+      '.editorconfig'
     ]);
+  });
+
+  it('should add module name', function () {
+    assert.fileContent('package.json', /"my-module"/);
+  });
+
+  it('should add GitHub username', function () {
+    assert.fileContent('package.json', /"beep/);
+  });
+
+  it('should camelize package name', function () {
+    assert.fileContent('readme.md', /myModule/);
   });
 });
