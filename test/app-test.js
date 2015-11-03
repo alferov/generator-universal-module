@@ -19,7 +19,9 @@ describe('ujsm:app', function () {
   it('creates files', function () {
     assert.file([
       'package.json',
+      '.eslintrc',
       'readme.md',
+      '.travis.yml',
       '.editorconfig',
       'src/module.js',
       'test/test.js'
