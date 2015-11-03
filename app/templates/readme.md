@@ -26,4 +26,4 @@ Description
 - **Array** - Result
 
 ## License
-MIT © []()
+MIT © [<%= name %>](http://github.com/<%= username %>)
