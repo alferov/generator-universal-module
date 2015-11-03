@@ -21,7 +21,9 @@ describe('ujsm:app', function () {
     assert.file([
       'package.json',
       'readme.md',
-      '.editorconfig'
+      '.editorconfig',
+      'src/module.js',
+      'test/test.js'
     ]);
   });
 

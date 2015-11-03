@@ -8,14 +8,13 @@ module.exports = yeoman.generators.Base.extend({
   prompting: function () {
     var done = this.async();
 
-    // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the dazzling ' + chalk.red('Ujsm') + ' generator!'
+      'Welcome to the ' + chalk.red('Universal JavaScript Module') + ' generator!'
     ));
 
     var prompts = [{
       name: 'moduleName',
-      message: 'What\'s the name of your module?',
+      message: 'What is the name of your module?',
       default: this.appname.replace(/\s/g, '-')
     }, {
       name: 'username',
