@@ -1,47 +1,37 @@
-# generator-ujsm [![Build Status](https://secure.travis-ci.org/alferov/generator-ujsm.png?branch=master)](https://travis-ci.org/alferov/generator-ujsm)
+# Universal JavaScript Module Generator [![Build Status](https://secure.travis-ci.org/alferov/generator-ujsm.png?branch=master)](https://travis-ci.org/alferov/generator-ujsm)
 
-> [Yeoman](http://yeoman.io) generator
+![ujsm](media/ujsm.png)
 
+> A Yeoman generator for creating universal JavaScript modules that work everywhere using ES2015, Babel, Webpack, Mocha, Chai, Karma, Isparta, and ESLint
 
-## Getting Started
+## Features
+- **ES2015** - Universal JavaScript Module Boilerplate (UJSM) uses Babel to transpile ES2015 source code.
+UJSM leverages transpilation because:
+  - A lot of open-source packages still don't have proper support of Node >= 4.x;
+  - Since we're going to run this module in the browsers, it will be necessary
+to provide cross-browser compatibility;
+  - The transpiled code will work with legacy Node versions;
+  - It will be easy to migrate once Node >= 4.x ecosystem is more stable;
+- **ES2015 Tests** - Mocha flag `--compilers js:babel/register` (it's already preconfigured in the npm `test` script) allows to transpile Mocha tests written with ES2015 on the fly.
+- **Universal Tests** - UJSM uses Karma (alongside with Mocha and Chai) to test the code in the browser. A npm script `test:browser` does the job.
+- **UMD** - Webpack adds the [UMD](https://github.com/umdjs/umd) pattern, which provides compatibility with the most popular script loaders, to the output.
+- **TDD** - The package has a particular npm script (`npm run tdd`) to start a Mocha watch task that reruns tests on file changes.
+- **Pre-commit Hook** - Every time before commiting, `pre-commit` runs npm tasks conveniently configured in the package.json (in this case, it's the `build` task that starts Webpack execution). You can temporary disable this feature by adding `--no-verify` flag (i.e `$ git commit -am "Beep bop" --no-verify`).
 
-### What is Yeoman?
-
-Trick question. It's not a thing. It's this guy:
-
-![](http://i.imgur.com/JHaAlBJ.png)
-
-Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.
-
-Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*
-
+## Installation
 ```bash
-npm install -g yo
+$ npm install -g yo generator-ujsm
+$ mkdir my-shiny-module && cd $_
+$ yo ujsm
 ```
 
-### Yeoman Generators
-
-Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
-
-To install generator-ujsm from npm, run:
-
-```bash
-npm install -g generator-ujsm
-```
-
-Finally, initiate the generator:
-
-```bash
-yo ujsm
-```
-
-### Getting To Know Yeoman
-
-Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
-
-If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
-
+## Workflow
+- `npm run build` - Build task that generates both minified and non-minified scripts;
+- `npm run test` - Run Mocha tests once;
+- `npm run test:browser` - Run Mocha tests in the browser using Karma;
+- `npm run tdd` - Run Mocha tests & watch files for changes;
+- `npm run tdd:browser` - Run Karma (w/ Mocha) tests & watch files for changes;
+- `npm run coverage` - Run Isparta, a code coverage tool;
 
 ## License
-
-MIT
+MIT © [Philipp Alferov](https://github.com/alferov)
