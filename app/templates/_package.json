@@ -13,7 +13,8 @@
     "test": "mocha --recursive --compilers js:babel/register --reporter nyan",
     "test:browser": "karma start --single-run",
     "tdd": "npm test -- --watch",
-    "tdd:browser": "karma start"
+    "tdd:browser": "karma start",
+    "postinstall": "npm run build"
   },
   "repository": "<%= username %>/<%= moduleName %>",
   "keywords": [

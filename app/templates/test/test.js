@@ -1,8 +1,8 @@
 import { expect as expect } from 'chai';
-import packageName from '../src/module.js';
+import <%= moduleName %> from '../src/module.js';
 
-describe('packageName', () => {
+describe('<%= moduleName %>', () => {
   it('should be runing without any problems', () => {
-    expect(packageName).to.not.throw();
+    expect(<%= moduleName %>).to.not.throw();
   });
 });

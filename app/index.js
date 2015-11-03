@@ -4,13 +4,19 @@ var chalk = require('chalk');
 var yosay = require('yosay');
 var _s = require('underscore.string');
 
+// Reference:
+// https://github.com/sindresorhus/generator-nm/blob/master/app/index.js
 module.exports = yeoman.generators.Base.extend({
   prompting: function () {
     var done = this.async();
 
-    this.log(yosay(
-      'Welcome to the ' + chalk.red('Universal JavaScript Module') + ' generator!'
-    ));
+    this.log(yosay([
+      'Welcome to the',
+      chalk.red('Universal JavaScript Module'),
+      'generator! UJSM leverages the following superpowers:',
+      chalk.yellow('ES2015, Babel, Webpack, Mocha,'),
+      chalk.yellow('Chai, Karma, Isparta, ESLint')
+    ].join(' ')));
 
     var prompts = [{
       name: 'moduleName',
