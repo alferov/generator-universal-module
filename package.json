@@ -1,6 +1,6 @@
 {
   "name": "generator-ujsm",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
@@ -12,7 +12,8 @@
   },
   "scripts": {
     "test": "mocha",
-    "tdd": "npm run test -- --watch --recursive"
+    "tdd": "npm run test -- --watch --recursive",
+    "release": "npm version ${BUMP:-\"patch\"} --no-git-tag-version && git add package.json && git commit -m \":octocat: Bump to $(cat package.json | jq -r .version)\" && git tag $(cat package.json | jq -r .version) && git push && git push --tags && npm publish"
   },
   "files": [
     "test",
