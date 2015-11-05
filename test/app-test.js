@@ -10,8 +10,8 @@ describe('ujsm:app', function () {
     helpers.run(path.join(__dirname, '../app'))
       .withOptions({ skipInstall: true })
       .withPrompts({
-        moduleName: "my module",
-        username: "beep"
+        moduleName: 'my module',
+        username: 'beep'
       })
       .on('end', done);
   });

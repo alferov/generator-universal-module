@@ -27,7 +27,7 @@ module.exports = yeoman.generators.Base.extend({
       message: 'What is your GitHub username?',
       store: true,
       validate: function (val) {
-      	return val.length > 0 ? true : 'You have to provide a username';
+        return val.length > 0 ? true : 'You have to provide a username';
       }
     }];
 
