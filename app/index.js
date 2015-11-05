@@ -60,6 +60,10 @@ module.exports = yeoman.generators.Base.extend({
     mv('travis.yml', '.travis.yml');
   },
 
+  postwriting: function() {
+    this.spawnCommandSync('git', ['init']);
+  },
+
   install: function () {
     this.installDependencies({ bower: false });
   }
