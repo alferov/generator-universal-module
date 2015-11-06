@@ -20,13 +20,13 @@ to provide cross-browser compatibility;
 
 ## Installation
 ```bash
-// Install Yeoman and the UJSM generator globally
+# Install Yeoman and the UJSM generator globally
 $ npm install -g yo generator-ujsm
 
-// Make a new folder & open it
+# Make a new folder & open it
 $ mkdir my-shiny-module && cd $_
 
-// Run the generator
+# Run the generator
 $ yo ujsm
 ```
 
@@ -40,7 +40,7 @@ $ yo ujsm
 - `npm run coverage` - Run Isparta, a code coverage tool;
 
 ## Resources
-[generator-ujsm](https://github.com/alferov/ujsm) - The original boilerplate;
+[ujsm](https://github.com/alferov/ujsm) - The original boilerplate;
 
 ## License
 MIT © [Philipp Alferov](https://github.com/alferov)
