@@ -5,15 +5,14 @@
   "main": "dist/module.js",
   "scripts": {
     "precommit": "npm test && npm run build",
-    "build": "rimraf ./dist && webpack --no-minimize && webpack",
-    "coverage": "isparta cover _mocha -- --require babel-core/register",
+    "build": "rimraf dist && webpack --no-minimize && webpack",
+    "coverage": "babel-node node_modules/isparta/bin/isparta cover --report text node_modules/mocha/bin/_mocha",
     "coveralls": "npm run coverage && coveralls < coverage/lcov.info",
-    "release": "npm version ${BUMP:-\"patch\"} --no-git-tag-version && git add package.json && git commit -m \":octocat: Bump to $(cat package.json | jq -r .version)\" && git tag $(cat package.json | jq -r .version) && git push && git push --tags && npm publish",
     "test": "npm run test-server && npm run test-browser",
     "test-server": "mocha --recursive --compilers js:babel-core/register --reporter nyan",
-    "test-browser": "./node_modules/karma/bin/karma start --single-run",
+    "test-browser": "karma start --single-run",
     "tdd": "npm test -- --watch",
-    "tdd-browser": "./node_modules/karma/bin/karma start"
+    "tdd-browser": "karma start"
   },
   "repository": "<%= username %>/<%= moduleName %>",
   "keywords": [
