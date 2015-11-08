@@ -6,10 +6,10 @@
   "scripts": {
     "precommit": "npm test && npm run build",
     "build": "rimraf dist && webpack --no-minimize && webpack",
-    "coverage": "babel-node node_modules/isparta/bin/isparta cover --report text node_modules/mocha/bin/_mocha",
-    "coveralls": "npm run coverage && coveralls < coverage/lcov.info",
+    "coverage": "babel-node node_modules/isparta/bin/isparta cover node_modules/mocha/bin/_mocha --report lcovonly -- -R spec",
+    "coveralls": "npm run coverage && coveralls < coverage/lcov.info && rimraf coverage",
     "test": "npm run test-server && npm run test-browser",
-    "test-server": "mocha --recursive --compilers js:babel-core/register --reporter nyan",
+    "test-server": "mocha --recursive --compilers js:babel-core/register",
     "tdd": "npm test -- --watch",
     "test-browser": "karma start --single-run",
     "tdd-browser": "karma start"
@@ -38,6 +38,7 @@
     "karma-spec-reporter": "0.0.18",
     "karma-webpack": "^1.5.0",
     "mocha": "^2.3.3",
+    "mocha-lcov-reporter": "^1.0.0",
     "phantomjs-polyfill": "0.0.1",
     "rimraf": "^2.4.3",
     "webpack": "^1.12.2"
