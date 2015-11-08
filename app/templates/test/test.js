@@ -1,4 +1,4 @@
-import { expect as expect } from 'chai';
+import { expect } from 'chai';
 import <%= camelizedModuleName %> from '../src/module.js';
 
 describe('<%= camelizedModuleName %>', () => {

@@ -4,7 +4,6 @@
   "description": "",
   "main": "dist/module.js",
   "scripts": {
-    "postinstall": "npm run build",
     "precommit": "npm test && npm run build",
     "build": "rimraf dist && webpack --no-minimize && webpack",
     "coverage": "babel-node node_modules/isparta/bin/isparta cover --report text node_modules/mocha/bin/_mocha",
