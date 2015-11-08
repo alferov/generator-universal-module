@@ -20,7 +20,12 @@
     "app"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "es6"
+    "es2015",
+    "universal",
+    "isomorphic",
+    "boilerplate"
   ],
   "dependencies": {
     "chalk": "^1.0.0",
