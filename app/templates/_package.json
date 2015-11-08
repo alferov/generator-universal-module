@@ -43,11 +43,6 @@
     "rimraf": "^2.4.3",
     "webpack": "^1.12.2"
   },
-  "pre-commit": [
-    "test",
-    "test:browser",
-    "build"
-  ],
   "author": {
     "name": "<%= name %>",
     "email": "<%= email %>"
