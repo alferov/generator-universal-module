@@ -11,8 +11,8 @@
     "coveralls": "npm run coverage && coveralls < coverage/lcov.info",
     "test": "npm run test-server && npm run test-browser",
     "test-server": "mocha --recursive --compilers js:babel-core/register --reporter nyan",
-    "test-browser": "karma start --single-run",
     "tdd": "npm test -- --watch",
+    "test-browser": "karma start --single-run",
     "tdd-browser": "karma start"
   },
   "repository": "<%= username %>/<%= moduleName %>",
