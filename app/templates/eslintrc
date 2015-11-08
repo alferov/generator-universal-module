@@ -7,7 +7,6 @@
     "strict": 0,
     "babel/generator-star-spacing": 1,
     "babel/new-cap": 1,
-    "babel/object-curly-spacing": 1,
     "babel/object-shorthand": 1,
     "babel/arrow-parens": 1,
     "array-bracket-spacing": [2, "never"],
