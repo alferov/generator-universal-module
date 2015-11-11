@@ -2,13 +2,19 @@
 var path = require('path');
 var assert = require('yeoman-generator').assert;
 var helpers = require('yeoman-generator').test;
+var _s = require('underscore.string');
+var moduleName, camelizedModuleName, slugifiedModuleName;
 
 describe('ujsm', function () {
   before(function (done) {
+    moduleName = 'my module';
+    camelizedModuleName = _s.camelize(moduleName);
+    slugifiedModuleName = _s.slugify(moduleName);
+
     helpers.run(path.join(__dirname, '../app'))
       .withOptions({ skipInstall: true })
       .withPrompts({
-        moduleName: 'my module',
+        moduleName: moduleName,
         username: 'beep',
         onlyServer: true
       })
@@ -21,23 +27,27 @@ describe('ujsm', function () {
       'readme.md',
       '.travis.yml',
       '.editorconfig',
-      'src/module.js',
+      'src/' + slugifiedModuleName + '.js',
       'test/test.js'
     ]);
   });
 
   it('generates correct package.json', function () {
     assert.file('package.json');
+
     assert.JSONFileContent('package.json', {
-      name: 'my-module',
-      repository: 'beep/my-module',
+      name: slugifiedModuleName,
+      repository: 'beep/' + slugifiedModuleName,
       files: ['dist', 'src'],
-      main: 'dist/module.js'
+      main: 'dist/' + slugifiedModuleName + '.js'
     });
   });
 
   it('generates correct readme', function () {
-    assert.fileContent('readme.md', /var myModule/);
-    assert.fileContent('readme.md', /npm install --save my-module/);
+    var moduleNameDef = new RegExp('var ' + camelizedModuleName);
+    var moduleNameDec = new RegExp('npm install --save ' + slugifiedModuleName);
+
+    assert.fileContent('readme.md', moduleNameDef);
+    assert.fileContent('readme.md',  moduleNameDec);
   });
 });
