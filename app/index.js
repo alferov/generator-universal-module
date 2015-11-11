@@ -59,6 +59,7 @@ module.exports = yeoman.generators.Base.extend({
     mv('gitignore', '.gitignore');
     mv('travis.yml', '.travis.yml');
     mv('src/module.js', 'src/' + this.props.moduleName + '.js');
+    mv('test/test.js', 'test/' + this.props.moduleName + '.spec.js');
   },
 
   postwriting: function() {
