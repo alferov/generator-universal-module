@@ -11,7 +11,7 @@
     "test": "npm run test-server && npm run test-browser",
     "test-server": "mocha --recursive --compilers js:babel-core/register --bail --require mocha.config.js",
     "test-browser": "karma start --single-run",
-    "tdd": "npm test -- --watch",
+    "tdd": "npm run test-server -- --watch",
     "tdd-browser": "karma start"
   },
   "repository": "<%= username %>/<%= moduleName %>",
