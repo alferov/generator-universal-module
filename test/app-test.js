@@ -28,7 +28,8 @@ describe('ujsm', function () {
       '.travis.yml',
       '.editorconfig',
       'src/' + slugifiedModuleName + '.js',
-      'test/test.js'
+      'test/test.js',
+      'mocha.config.js'
     ]);
   });
 
