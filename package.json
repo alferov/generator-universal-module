@@ -1,6 +1,6 @@
 {
   "name": "generator-ujsm",
-  "version": "1.1.7",
+  "version": "1.2.0",
   "description": "A Yeoman generator for creating universal JavaScript modules that work everywhere using ES2015, Babel, Webpack, Mocha, Chai, Karma, Isparta, ESLint",
   "license": "MIT",
   "main": "app/index.js",
