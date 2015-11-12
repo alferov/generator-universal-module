@@ -6,7 +6,7 @@ module.exports = function(config) {
       './node_modules/phantomjs-polyfill/bind-polyfill.js',
       'test/<% if (isSeparated) { %>client/<% } %>**/*.js'
     ],
-    frameworks: ['mocha'],
+    frameworks: ['mocha', 'chai'],
     preprocessors: {
       'test/<% if (isSeparated) { %>client/<% } %>**/*.js': ['webpack']
     },
@@ -19,6 +19,7 @@ module.exports = function(config) {
     plugins: [
       require('karma-webpack'),
       require('karma-mocha'),
+      require('karma-chai'),
       require('karma-phantomjs-launcher'),
       require('karma-spec-reporter')
     ],
