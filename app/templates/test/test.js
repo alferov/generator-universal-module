@@ -1,4 +1,4 @@
-import <%= camelizedModuleName %> from '../<% if (separatedTests) { %>../<% } %>src/<%= moduleName %>.js';
+import <%= camelizedModuleName %> from '../<% if (isSeparated) { %>../<% } %>src/<%= moduleName %>.js';
 import { expect } from 'chai';
 
 describe('<%= camelizedModuleName %>', () => {

@@ -30,10 +30,10 @@ module.exports = yeoman.generators.Base.extend({
         return val.length > 0 ? true : 'You have to provide a username';
       }
     }, {
-      name: 'separatedTests',
-      message: 'Would you like to separate your server/client tests?',
+      name: 'isSeparated',
+      message: 'Would you like to keep your server/client tests separate?',
       type: 'confirm',
-      default: false
+      default: true
     }];
 
     this.prompt(prompts, function(props) {
@@ -43,7 +43,7 @@ module.exports = yeoman.generators.Base.extend({
         name: this.user.git.name(),
         email: this.user.git.email(),
         username: props.username,
-        separatedTests: props.separatedTests
+        isSeparated: props.isSeparated
       };
 
       done();
@@ -70,7 +70,7 @@ module.exports = yeoman.generators.Base.extend({
     mv('travis.yml', '.travis.yml');
     mv('src/module.js', 'src/' + this.props.moduleName + '.js');
 
-    if (props.separatedTests) {
+    if (props.isSeparated) {
       cp('test/test.js', 'test/server/' + this.props.moduleName + '.spec.js');
       mv('test/test.js', 'test/client/' + this.props.moduleName + '.spec.js');
     } else {

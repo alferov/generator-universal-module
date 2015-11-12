@@ -63,7 +63,7 @@ describe('ujsm', function () {
         .withPrompts({
           moduleName: moduleName,
           username: 'beep',
-          separatedTests: true
+          isSeparated: true
         })
         .on('end', done);
     });

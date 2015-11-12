@@ -4,11 +4,11 @@ module.exports = function(config) {
     files: [
       // Each file acts as entry point for the webpack configuration
       './node_modules/phantomjs-polyfill/bind-polyfill.js',
-      'test/<% if (separatedTests) { %>client/<% } %>**/*.js'
+      'test/<% if (isSeparated) { %>client/<% } %>**/*.js'
     ],
     frameworks: ['mocha'],
     preprocessors: {
-      'test/<% if (separatedTests) { %>client/<% } %>**/*.js': ['webpack']
+      'test/<% if (isSeparated) { %>client/<% } %>**/*.js': ['webpack']
     },
     webpack: {
       module: webpackConf.module
