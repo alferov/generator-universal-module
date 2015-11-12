@@ -4,7 +4,7 @@
 [![Build Status][travis-image]][travis-url]
 [![Dependency Status][depstat-image]][depstat-url]
 
-![ujsm](media/ujsm.png)
+![UJSM](media/ujsm.png)
 
 > A Yeoman generator for creating universal JavaScript modules that work everywhere using ES2015, Babel, Webpack, Mocha, Chai, Sinon, Karma, Isparta, and ESLint
 
@@ -20,6 +20,8 @@ to provide cross-browser compatibility;
 1. **UMD** - Webpack is preconfigured to integrate the [Universal Module Definition](https://github.com/umdjs/umd) (UMD) API (which provides compatibility with the most popular script loaders) to the ouput script.
 1. **TDD** - The package has a particular npm script `npm run tdd` (and `npm run tdd-browser` for the browser testing) to start a Mocha watch task that reruns tests on file changes.
 1. **Git Hooks** - Every time before commiting, [husky](https://github.com/typicode/husky) runs npm tasks conveniently configured in the package.json (in this case it automatically starting both `test` and `build` tasks). You can temporary disable this feature by adding `--no-verify` flag (i.e `$ git commit -am "Beep bop" --no-verify`). The list of all available hooks can be found [here](https://github.com/typicode/husky/blob/master/hooks.json).
+
+![UJSM](media/screenshot.png)
 
 ## Installation
 ```bash
