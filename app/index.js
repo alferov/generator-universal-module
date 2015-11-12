@@ -7,7 +7,7 @@ var _s = require('underscore.string');
 // Reference:
 // https://github.com/sindresorhus/generator-nm/blob/master/app/index.js
 module.exports = yeoman.generators.Base.extend({
-  prompting: function () {
+  prompting: function() {
     var done = this.async();
 
     this.log(yosay([
@@ -29,24 +29,34 @@ module.exports = yeoman.generators.Base.extend({
       validate: function (val) {
         return val.length > 0 ? true : 'You have to provide a username';
       }
+    }, {
+      name: 'separatedTests',
+      message: 'Would you like to separate your server/client tests?',
+      type: 'confirm',
+      default: false
     }];
 
-    this.prompt(prompts, function (props) {
+    this.prompt(prompts, function(props) {
       this.props = {
         moduleName: _s.slugify(props.moduleName),
         camelizedModuleName: _s.camelize(props.moduleName),
         name: this.user.git.name(),
         email: this.user.git.email(),
-        username: props.username
+        username: props.username,
+        separatedTests: props.separatedTests
       };
 
       done();
     }.bind(this));
   },
 
-  writing: function () {
-    var mv = function (from, to) {
+  writing: function() {
+    var mv = function(from, to) {
       this.fs.move(this.destinationPath(from), this.destinationPath(to));
+    }.bind(this);
+
+    var cp = function(from, to) {
+      this.fs.copy(this.destinationPath(from), this.destinationPath(to));
     }.bind(this);
 
     var props = this.props;
@@ -59,7 +69,13 @@ module.exports = yeoman.generators.Base.extend({
     mv('gitignore', '.gitignore');
     mv('travis.yml', '.travis.yml');
     mv('src/module.js', 'src/' + this.props.moduleName + '.js');
-    mv('test/test.js', 'test/' + this.props.moduleName + '.spec.js');
+
+    if (props.separatedTests) {
+      cp('test/test.js', 'test/server/' + this.props.moduleName + '.spec.js');
+      mv('test/test.js', 'test/client/' + this.props.moduleName + '.spec.js');
+    } else {
+      mv('test/test.js', 'test/' + this.props.moduleName + '.spec.js');
+    }
   },
 
   postwriting: function() {
@@ -68,7 +84,7 @@ module.exports = yeoman.generators.Base.extend({
     }
   },
 
-  install: function () {
+  install: function() {
     this.installDependencies({ bower: false });
   }
 });
