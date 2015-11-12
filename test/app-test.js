@@ -19,7 +19,8 @@ describe('ujsm', function () {
         .withOptions({ skipInstall: true })
         .withPrompts({
           moduleName: moduleName,
-          username: 'beep'
+          username: 'beep',
+          browsers: []
         })
         .on('end', done);
     });
@@ -60,11 +61,13 @@ describe('ujsm', function () {
       assert.fileContent('karma.conf.js', /test\/client\/\*\*\/\*\.js/);
       assert.fileContent('package.json', /mocha test\/server/);
 
+      assert.fileContent('karma.conf.js', /\'PhantomJS\'/);
       assert.fileContent('karma.conf.js', /\'sinon-chai\'/);
-      assert.noFileContent('karma.conf.js', /\'chai\'/);
       assert.fileContent('package.json', /\"karma-sinon-chai\"/);
-      assert.noFileContent('package.json', /\"karma-chai\"/);
       assert.fileContent('mocha.config.js', /\'sinon\'/);
+
+      assert.noFileContent('karma.conf.js', /\'chai\'/);
+      assert.noFileContent('package.json', /\"karma-chai\"/);
     });
   });
 
@@ -76,7 +79,8 @@ describe('ujsm', function () {
           moduleName: moduleName,
           username: 'beep',
           isSeparated: false,
-          inclSinon: false
+          inclSinon: false,
+          browsers: ['includeChrome', 'includeFirefox']
         })
         .on('end', done);
     });
@@ -88,10 +92,12 @@ describe('ujsm', function () {
     });
 
     it('generates correct tests configulartion', function () {
-      assert.noFileContent('karma.conf.js', /\'sinon-chai\'/);
       assert.fileContent('karma.conf.js', /\'chai\'/);
-      assert.noFileContent('package.json', /\"karma-sinon-chai\"/);
       assert.fileContent('package.json', /\"karma-chai\"/);
+      assert.fileContent('karma.conf.js', /\'Chrome\', \'Firefox\'/);
+
+      assert.noFileContent('package.json', /\"karma-sinon-chai\"/);
+      assert.noFileContent('karma.conf.js', /\'sinon-chai\'/);
       assert.noFileContent('mocha.config.js', /\'sinon\'/);
     });
   });

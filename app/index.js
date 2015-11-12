@@ -39,9 +39,38 @@ module.exports = yeoman.generators.Base.extend({
       message: 'Would you like to include Sinon?',
       type: 'confirm',
       default: true
+    }, {
+      type: 'checkbox',
+      name: 'browsers',
+      message: 'What karma launchers would you like to include?',
+      choices: [{
+        name: 'PhantomJS',
+        value: 'includePhantomJS',
+        checked: true
+      }, {
+        name: 'Chrome',
+        value: 'includeChrome',
+        checked: false
+      }, {
+        name: 'Firefox',
+        value: 'includeFirefox',
+        checked: false
+      }]
     }];
 
     this.prompt(prompts, function(props) {
+      var browsers = props.browsers;
+
+      var browserIncluded = function(browsers, browser) {
+        return browsers && browsers.indexOf(browser) !== -1;
+      };
+
+      var normalizeBrowserNames = function(browsers) {
+        return browsers.slice().map(function(item) {
+          return item.replace(/^include/, '');
+        });
+      };
+
       this.props = {
         moduleName: _s.slugify(props.moduleName),
         camelizedModuleName: _s.camelize(props.moduleName),
@@ -49,8 +78,18 @@ module.exports = yeoman.generators.Base.extend({
         email: this.user.git.email(),
         username: props.username,
         isSeparated: props.isSeparated,
-        inclSinon: props.inclSinon
+        inclSinon: props.inclSinon,
+        includePhantom: browserIncluded(browsers, 'includePhantomJS'),
+        includeChrome: browserIncluded(browsers, 'includeChrome'),
+        includeFirefox: browserIncluded(browsers, 'includeFirefox'),
+        browsers: normalizeBrowserNames(browsers)
       };
+
+      // Use PhantomJS as a default launcher if launcher hasn't been choosen
+      if (!this.props.includeChrome && !this.props.includeFirefox) {
+        this.props.includePhantom = true;
+        this.props.browsers = ['PhantomJS'];
+      }
 
       done();
     }.bind(this));
