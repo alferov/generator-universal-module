@@ -13,7 +13,7 @@ describe('ujsm', function () {
     slugifiedModName = _s.slugify(moduleName);
   });
 
-  describe('with standart set of options', function() {
+  describe('with default options', function() {
     before(function (done) {
       helpers.run(path.join(__dirname, '../app'))
         .withOptions({ skipInstall: true })
@@ -24,16 +24,17 @@ describe('ujsm', function () {
         .on('end', done);
     });
 
-    it('creates files', function () {
+    it('creates files as expected', function () {
       assert.file([
         '.eslintrc',
         'readme.md',
         '.travis.yml',
         '.editorconfig',
         'src/' + slugifiedModName + '.js',
-        'test/' + slugifiedModName +  '.spec.js',
         'mocha.config.js',
-        'karma.conf.js'
+        'karma.conf.js',
+        'test/server/' + slugifiedModName +  '.spec.js',
+        'test/client/' + slugifiedModName +  '.spec.js'
       ]);
     });
 
@@ -54,33 +55,30 @@ describe('ujsm', function () {
       assert.fileContent('readme.md', moduleNameDef);
       assert.fileContent('readme.md',  moduleNameDec);
     });
+
+    it('generates correct tests configulartion', function () {
+      assert.fileContent('karma.conf.js', /test\/client\/\*\*\/\*\.js/);
+      assert.fileContent('package.json', /mocha test\/server/);
+    });
   });
 
-  describe('with tests separation', function() {
+  describe('without tests separation', function() {
     before(function (done) {
       helpers.run(path.join(__dirname, '../app'))
         .withOptions({ skipInstall: true })
         .withPrompts({
           moduleName: moduleName,
           username: 'beep',
-          isSeparated: true
+          isSeparated: false
         })
         .on('end', done);
     });
 
-    it('separates test files', function () {
+    it('creates expected test files', function () {
       assert.file([
-        'test/server/' + slugifiedModName +  '.spec.js',
-        'test/client/' + slugifiedModName +  '.spec.js'
+        'test/' + slugifiedModName +  '.spec.js'
       ]);
     });
 
-    it('generates correct tests configulartion', function () {
-      var moduleNameDef = new RegExp('var ' + camelizedModName);
-      var moduleNameDec = new RegExp('npm install --save ' + slugifiedModName);
-
-      assert.fileContent('karma.conf.js', /test\/client\/\*\*\/\*\.js/);
-      assert.fileContent('package.json', /mocha test\/server/);
-    });
   });
 });
