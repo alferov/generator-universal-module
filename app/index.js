@@ -34,6 +34,11 @@ module.exports = yeoman.generators.Base.extend({
       message: 'Would you like to keep your server/client tests separate?',
       type: 'confirm',
       default: true
+    }, {
+      name: 'inclSinon',
+      message: 'Would you like to include Sinon?',
+      type: 'confirm',
+      default: true
     }];
 
     this.prompt(prompts, function(props) {
@@ -43,7 +48,8 @@ module.exports = yeoman.generators.Base.extend({
         name: this.user.git.name(),
         email: this.user.git.email(),
         username: props.username,
-        isSeparated: props.isSeparated
+        isSeparated: props.isSeparated,
+        inclSinon: props.inclSinon
       };
 
       done();

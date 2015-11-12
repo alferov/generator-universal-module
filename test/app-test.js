@@ -59,17 +59,24 @@ describe('ujsm', function () {
     it('generates correct tests configulartion', function () {
       assert.fileContent('karma.conf.js', /test\/client\/\*\*\/\*\.js/);
       assert.fileContent('package.json', /mocha test\/server/);
+
+      assert.fileContent('karma.conf.js', /\'sinon-chai\'/);
+      assert.noFileContent('karma.conf.js', /\'chai\'/);
+      assert.fileContent('package.json', /\"karma-sinon-chai\"/);
+      assert.noFileContent('package.json', /\"karma-chai\"/);
+      assert.fileContent('mocha.config.js', /\'sinon\'/);
     });
   });
 
-  describe('without tests separation', function() {
+  describe('with reversed set of options', function() {
     before(function (done) {
       helpers.run(path.join(__dirname, '../app'))
         .withOptions({ skipInstall: true })
         .withPrompts({
           moduleName: moduleName,
           username: 'beep',
-          isSeparated: false
+          isSeparated: false,
+          inclSinon: false
         })
         .on('end', done);
     });
@@ -80,5 +87,12 @@ describe('ujsm', function () {
       ]);
     });
 
+    it('generates correct tests configulartion', function () {
+      assert.noFileContent('karma.conf.js', /\'sinon-chai\'/);
+      assert.fileContent('karma.conf.js', /\'chai\'/);
+      assert.noFileContent('package.json', /\"karma-sinon-chai\"/);
+      assert.fileContent('package.json', /\"karma-chai\"/);
+      assert.noFileContent('mocha.config.js', /\'sinon\'/);
+    });
   });
 });
