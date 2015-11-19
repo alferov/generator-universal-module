@@ -26,13 +26,13 @@ to provide cross-browser compatibility;
 ## Installation
 ```bash
 # Install Yeoman and the UJSM generator globally
-$ npm install -g yo generator-ujsm
+$ npm install -g yo generator-universal-module
 
 # Make a new folder & open it
 $ mkdir my-shiny-module && cd $_
 
 # Run the generator
-$ yo ujsm
+$ yo universal-module
 ```
 
 ## Workflow
@@ -71,11 +71,11 @@ $ npm cache clean
 ## License
 MIT © [Philipp Alferov](https://github.com/alferov)
 
-[npm-url]: https://npmjs.org/package/generator-ujsm
-[npm-image]: https://img.shields.io/npm/v/generator-ujsm.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/generator-universal-module
+[npm-image]: https://img.shields.io/npm/v/generator-universal-module.svg?style=flat-square
 
-[travis-url]: https://travis-ci.org/alferov/generator-ujsm
-[travis-image]: https://img.shields.io/travis/alferov/generator-ujsm.svg?style=flat-square
+[travis-url]: https://travis-ci.org/alferov/generator-universal-module
+[travis-image]: https://img.shields.io/travis/alferov/generator-universal-module.svg?style=flat-square
 
-[depstat-url]: https://david-dm.org/alferov/generator-ujsm
-[depstat-image]: https://david-dm.org/alferov/generator-ujsm.svg?style=flat-square
+[depstat-url]: https://david-dm.org/alferov/generator-universal-module
+[depstat-image]: https://david-dm.org/alferov/generator-universal-module.svg?style=flat-square
