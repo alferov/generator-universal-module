@@ -28,6 +28,15 @@ Description
 #### Return
 - **Array** - Result
 
+## Development
+- `npm run build` - Build task that generates both minified and non-minified scripts;
+- `npm run test-server` - Run Mocha tests once;
+- `npm run test-browser` - Run Mocha tests in the browser using Karma once;
+- `npm run test` - Shortcut for `npm run test-server && npm run test-browser`;
+- `npm run tdd` - Run Mocha tests & watch files for changes;
+- `npm run tdd-browser` - Run Karma (w/ Mocha) tests & watch files for changes;
+- `npm run coverage` - Run Isparta, a code coverage tool;
+
 ## License
 MIT © [<%= name %>](http://github.com/<%= username %>)
 
