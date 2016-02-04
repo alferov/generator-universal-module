@@ -9,7 +9,7 @@
     "coverage": "babel-node node_modules/isparta/bin/isparta cover node_modules/mocha/bin/_mocha --report lcovonly -- -R spec",
     "coveralls": "npm run coverage && coveralls < coverage/lcov.info && rimraf coverage",
     "test": "npm run test-server && npm run test-browser",
-    "test-server": "mocha <% if (isSeparated) { %>test/server<% } %> --recursive --compilers js:babel-core/register --bail --require mocha.config.js",
+    "test-server": "mocha <% if (isSeparated) { %>test/server<% } %> --recursive --bail --require babel-core/register mocha.config.js",
     "test-browser": "karma start --single-run",
     "tdd": "npm run test-server -- --watch",
     "tdd-browser": "karma start"
@@ -32,19 +32,20 @@
     "eslint": "^1.4.1",
     "eslint-plugin-babel": "^3.1.0",
     "husky": "^0.10.1",
-    "isparta": "^3.5.1",
+    "isparta": "^4.0.0",
     "karma": "^0.13.14",
-    <% if (!inclSinon) { %>"karma-chai": "^0.1.0", <% } %>
-    <% if (includeChrome) { %>"karma-chrome-launcher": "^0.2.1", <% } %>
-    <% if (includeFirefox) { %>"karma-firefox-launcher": "^0.1.6", <% } %>
-    "karma-mocha": "^0.1.10",
-    <% if (includePhantom) { %>"karma-phantomjs-launcher": "^0.1.4", <% } %>
-    <% if (inclSinon) { %> "karma-sinon-chai": "^1.1.0", <% } %>
-    "karma-spec-reporter": "0.0.18",
+    <% if (!inclSinon) { %>"karma-chai": "^0.1.0",<% } %>
+    <% if (includeChrome) { %>"karma-chrome-launcher": "^0.2.1",<% } %>
+    <% if (includeFirefox) { %>"karma-firefox-launcher": "^0.1.6",<% } %>
+    "karma-mocha": "^0.2.1",
+    <% if (includePhantom) { %>"karma-phantomjs-launcher": "^1.0.0",
+    "phantomjs-polyfill": "0.0.1",
+    "phantomjs-prebuilt": "^2.1.3",<% } %>
+    <% if (inclSinon) { %>"karma-sinon-chai": "^1.1.0",<% } %>
+    "karma-spec-reporter": "0.0.23",
     "karma-webpack": "^1.5.0",
     "mocha": "^2.3.3",
     "mocha-lcov-reporter": "^1.0.0",
-    "phantomjs-polyfill": "0.0.1",
     "rimraf": "^2.4.3",
     <% if (inclSinon) { %> "sinon": "^1.17.2",
     "sinon-chai": "^2.8.0",<% } %>
