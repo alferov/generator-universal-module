@@ -27,6 +27,7 @@ describe('ujsm', function () {
 
     it('creates files as expected', function () {
       assert.file([
+        '.babelrc',
         '.eslintrc',
         'readme.md',
         '.travis.yml',
