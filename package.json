@@ -29,12 +29,12 @@
   ],
   "dependencies": {
     "chalk": "^1.0.0",
-    "underscore.string": "^3.2.2",
-    "yeoman-generator": "^0.21.1",
-    "yosay": "^1.0.2"
+    "underscore.string": "^3.2.3",
+    "yeoman-generator": "^0.22.5",
+    "yosay": "^1.1.0"
   },
   "devDependencies": {
-    "eslint": "^1.4.1",
-    "mocha": "*"
+    "eslint": "^1.10.3",
+    "mocha": "^2.4.5"
   }
 }
