@@ -1,6 +1,6 @@
 {
   "name": "generator-universal-module",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "description": "A Yeoman generator for creating universal JavaScript modules that work everywhere using ES2015, Babel, Webpack, Mocha, Chai, Karma, Isparta, ESLint",
   "license": "MIT",
   "main": "app/index.js",
