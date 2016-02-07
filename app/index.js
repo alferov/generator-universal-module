@@ -4,9 +4,7 @@ var chalk = require('chalk');
 var yosay = require('yosay');
 var _s = require('underscore.string');
 
-// Reference:
-// https://github.com/sindresorhus/generator-nm/blob/master/app/index.js
-module.exports = yeoman.generators.Base.extend({
+module.exports = yeoman.Base.extend({
   prompting: function() {
     var done = this.async();
 
